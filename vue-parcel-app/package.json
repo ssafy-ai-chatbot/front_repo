@@ -1,0 +1,28 @@
+{
+  "name": "vue-parcel-app",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "keywords": [
+    "vue",
+    "parcel",
+    "chatbot",
+    "frontend"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "RAG-based recipe chatbot frontend using Vue.js and Parcel.js",
+  "dependencies": {
+    "@vue/compiler-sfc": "^3.4.27",
+    "pinia": "^3.0.3",
+    "vue": "^3.4.27"
+  },
+  "devDependencies": {
+    "@parcel/resolver-glob": "^2.15.4",
+    "@parcel/transformer-vue": "^2.15.4",
+    "buffer": "^6.0.3",
+    "parcel": "^2.15.4"
+  }
+}
