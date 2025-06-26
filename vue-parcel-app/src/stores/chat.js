@@ -309,7 +309,7 @@ export const useChatStore = defineStore('chat', () => {
         content: {
           title: '추천 요리 목록',
           recommendation: displayedRecommendations,
-          text1: '🍽️ 마음에 드는 메뉴의 레시피를 찾아보세요</br>📝 입력 예시:</br>"맑은 닭국 레시피 알려줘"</br>"닭가슴살 오야코동 만드는 법"</br>"맑은 닭국"</br>📊 궁금한 메뉴의 영양 정보를 살펴보세요</br>📝 입력 예시:</br>"맑은 닭국의 칼로리를 알려줘"</br>"닭가슴살 카레 영양 정보를 알려줘"',
+          text1: '🍽️ 마음에 드는 메뉴의 레시피를 찾아보세요</br>📝 입력 예시:</br>"맑은 닭국 레시피 알려줘"</br>"닭가슴살 오야코동 만드는 법"</br>"맑은 닭국"</br></br>📊 궁금한 메뉴의 영양 정보를 살펴보세요</br>📝 입력 예시:</br>"맑은 닭국의 칼로리를 알려줘"</br>"닭가슴살 카레 영양 정보를 알려줘"',
           text2: '💭 마음에 드는 메뉴가 없으신가요?',
           actions: getRecommendationActions()
         }

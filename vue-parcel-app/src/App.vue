@@ -18,6 +18,7 @@ body {
   margin: 0;
   font-family: 'Nunito', 'SF Pro Text', sans-serif;
   background-color: white;
+  /* background-color: black; */
 }
 /*#F5F5F5*/
 
