@@ -33,7 +33,7 @@ function handleButtonClick(optionText) {
         </button>
       </div>
       
-      <div v-if="message.type === 'recipe'" class="recipe-card">
+      <div v-if="message.type === 'recipe_response'" class="recipe-card">
         <h3>🥄 {{ message.content.title }}</h3>
         <div class="divider"></div>
         <h4>🛒 준비물</h4>
@@ -50,7 +50,7 @@ function handleButtonClick(optionText) {
              class="option-button" 
              @click="handleButtonClick(action)">
              {{ action }}
-            </button>
+           </button>
         </div>
       </div>
 
@@ -72,7 +72,7 @@ function handleButtonClick(optionText) {
              class="option-button" 
              @click="handleButtonClick(action)">
              {{ action }}
-            </button>
+           </button>
         </div>
       </div>
 
@@ -87,20 +87,18 @@ function handleButtonClick(optionText) {
           </li>
         </ul>
         <div class="card-actions">
-           <button 
-             v-for="action in message.content.actions" :key="action"
-             class="option-button" 
-             @click="handleButtonClick(action)">
-             {{ action }}
-            </button>
+          <button 
+            v-for="action in message.content.actions" :key="action"
+            class="option-button" 
+            @click="handleButtonClick(action)">
+            {{ action }}
+          </button>
         </div>
       </div>
 
       <div v-if="message.type === 'recipe_can_not_find'" class="nutrition-card">
-        <!--<h4>죄송합니다! 
-        {{ message.content.title }} 레시피를 찾을 수 없어요.</h4>-->
         <div v-html="message.content.text"></div> 
-        <template v-if="message.content.alternatives">
+        <template v-if="message.content.alternatives && message.content.alternatives.length > 0">
           <div class="divider"></div>
           <ul>
               <li>🍽️ 비슷한 레시피 추천</li>
@@ -116,18 +114,24 @@ function handleButtonClick(optionText) {
              class="option-button" 
              @click="handleButtonClick(action)">
              {{ action }}
-            </button>
+           </button>
+        </div>
+      </div>
+
+      <div v-if="message.type === 'can_not_find'" class="nutrition-card">
+        <div v-html="message.content.text"></div> 
+        <div class="divider"></div>
+        <div class="card-actions">
+           <button 
+             v-for="action in message.content.actions" :key="action"
+             class="option-button" 
+             @click="handleButtonClick(action)">
+             {{ action }}
+           </button>
         </div>
       </div>
     </div>
-    
-    <!--<img v-if="message.author === 'user'" src="/images/user.png" alt="user-avatar" class="avatar user-avatar">
-  -->
-  <div v-if="message.author === 'user'" class="avatar user-avatar user-avatar-image"></div>
-  <!--  
-  <img v-if="message.author === 'user'" :src="userAvatar" alt="user-avatar" class="avatar user-avatar">
-  -->
-  <!-- <img v-if="message.author === 'user'" src="https://placehold.co/38x38" alt="user-avatar" class="avatar user-avatar"> -->
+    <div v-if="message.author === 'user'" class="avatar user-avatar user-avatar-image"></div>
   </div>
   
 
