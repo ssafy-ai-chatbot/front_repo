@@ -58,14 +58,15 @@ function handleButtonClick(optionText) {
 
       <div v-if="message.type === 'ingredients_response'" class="recipe-card">
         <h4>📋 {{ message.content.title }}</h4>
+        <div class="divider"></div>
         <div v-for="(menu, i) in message.content.recommendation" :key="i" class="recipe-step">
           <p v-html="menu.menu"></p>
           <p>준비물 : <span v-html="menu.ingredients"></span></p>
         </div>
         <div class="divider"></div>
-        <p v-html="message.content.text1"></p>
+        <p v-html="message.content.text1" class="no-margin-text"></p>
         <div class="divider"></div>
-        <p v-html="message.content.text2"></p>
+        <p v-html="message.content.text2" class="no-margin-text"></p>
         <div class="card-actions">
            <button 
              v-for="action in message.content.actions" :key="action"
@@ -80,8 +81,10 @@ function handleButtonClick(optionText) {
 
       <div v-if="message.type === 'nutrition_response'" class="nutrition-card">
         <h3>📊 {{ message.content.title }} 영양 정보</h3>
+        <div class="divider"></div>
+        <p v-if="message.content.text" class="no-margin-text">{{ message.content.text }}</p>
+        <div v-if="message.content.text" class="divider"></div>
         <ul>
-          <p v-if="message.content.text">{{ message.content.text }}</p>
           <li v-for="item in message.content.info" :key="item.name">
             <strong>{{ item.name }}</strong> : {{ item.value }}
           </li>
@@ -106,7 +109,7 @@ function handleButtonClick(optionText) {
                 {{ menu.name }}
               </li>
             </ul>
-          <div class="divider"></div>
+          <!-- <div class="divider"></div> -->
         </template>
         <div class="card-actions">
            <button 
@@ -209,7 +212,7 @@ function handleButtonClick(optionText) {
 }
 .divider {
   border-top: 1px solid #E0E0E0;
-  margin: 5px 0;
+  margin: 0px 0;
 }
 h3, h4 { margin: 0; color: #555; }
 h3 { font-size: 15px; }
@@ -262,5 +265,8 @@ h4 { font-size: 14px; }
   background-image: url('../assets/user.png'); /* src/components에서 src/img로 상대 경로 */
   background-size: cover;
   background-position: center;
+}
+.no-margin-text {
+  margin: 0
 }
 </style>

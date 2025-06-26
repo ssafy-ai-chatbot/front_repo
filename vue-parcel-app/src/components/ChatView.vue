@@ -37,5 +37,27 @@ watch(messages, () => {
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  /* 스크롤바 디자인 */
+  &::-webkit-scrollbar {
+    width: 10px; /* 스크롤바의 너비 */
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent; /* 스크롤바 트랙의 배경 (투명하게) */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #E0E0E0; /* 스크롤바 썸의 색상 (약간 투명한 하늘) */
+    border-radius: 10px; /* 스크롤바 썸의 모서리를 둥글게 */
+    border: 2px solid transparent; /* 스크롤바 썸 주위에 투명한 테두리 추가 (크기 유지) */
+    background-clip: padding-box; /* border-box 모델에서 padding-box 기준으로 배경을 그림 */
+  }
+
+  /* 스크롤바 호버 시 */
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #CCCCCC; /* 호버 시 스크롤바 썸 색상 변경 */
+  }
 }
+
 </style>
