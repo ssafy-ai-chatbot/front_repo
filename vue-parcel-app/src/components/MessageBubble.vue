@@ -23,18 +23,24 @@ function handleButtonClick(optionText) {
 
       <div v-if="message.type === 'initial_options'" class="message-content">
         <div v-html="message.content.text"></div>
-        <button 
-          v-for="option in message.content.options" 
-          :key="option" 
+        <button
+          v-for="option in message.content.options"
+          :key="option"
           class="option-button"
           @click="handleButtonClick(option)"
         >
           {{ option }}
         </button>
       </div>
-      
+
+      <div v-if="message.type === 'loading'" class="message-content loading-message">
+        <div v-html="message.content.text"></div>
+        <span class="loading-spinner"></span>
+      </div>
+
       <div v-if="message.type === 'recipe_response'" class="recipe-card">
         <h3>🥄 {{ message.content.title }}</h3>
+        <img v-if="message.image" :src="message.image" alt="레시피 이미지" class="recipe-main-image">
         <div class="divider"></div>
         <h4>🛒 준비물</h4>
         <p class="ingredients" v-html="message.content.ingredients"></p>
@@ -45,9 +51,9 @@ function handleButtonClick(optionText) {
           <img v-if="step.image" :src="step.image" :alt="'step ' + (i+1)">
         </div>
         <div class="card-actions">
-           <button 
+           <button
              v-for="action in message.content.actions" :key="action"
-             class="option-button" 
+             class="option-button"
              @click="handleButtonClick(action)">
              {{ action }}
            </button>
@@ -68,9 +74,9 @@ function handleButtonClick(optionText) {
         <div class="divider"></div>
         <p v-html="message.content.text2" class="no-margin-text"></p>
         <div class="card-actions">
-           <button 
+           <button
              v-for="action in message.content.actions" :key="action"
-             class="option-button" 
+             class="option-button"
              @click="handleButtonClick(action)">
              {{ action }}
            </button>
@@ -90,9 +96,9 @@ function handleButtonClick(optionText) {
           </li>
         </ul>
         <div class="card-actions">
-          <button 
+          <button
             v-for="action in message.content.actions" :key="action"
-            class="option-button" 
+            class="option-button"
             @click="handleButtonClick(action)">
             {{ action }}
           </button>
@@ -100,7 +106,7 @@ function handleButtonClick(optionText) {
       </div>
 
       <div v-if="message.type === 'recipe_can_not_find'" class="nutrition-card">
-        <div v-html="message.content.text"></div> 
+        <div v-html="message.content.text"></div>
         <template v-if="message.content.alternatives && message.content.alternatives.length > 0">
           <div class="divider"></div>
           <ul>
@@ -109,12 +115,11 @@ function handleButtonClick(optionText) {
                 {{ menu.name }}
               </li>
             </ul>
-          <!-- <div class="divider"></div> -->
-        </template>
+          </template>
         <div class="card-actions">
-           <button 
+           <button
              v-for="action in message.content.actions" :key="action"
-             class="option-button" 
+             class="option-button"
              @click="handleButtonClick(action)">
              {{ action }}
            </button>
@@ -122,12 +127,12 @@ function handleButtonClick(optionText) {
       </div>
 
       <div v-if="message.type === 'can_not_find'" class="nutrition-card">
-        <div v-html="message.content.text"></div> 
+        <div v-html="message.content.text"></div>
         <div class="divider"></div>
         <div class="card-actions">
-           <button 
+           <button
              v-for="action in message.content.actions" :key="action"
-             class="option-button" 
+             class="option-button"
              @click="handleButtonClick(action)">
              {{ action }}
            </button>
@@ -136,7 +141,7 @@ function handleButtonClick(optionText) {
     </div>
     <div v-if="message.author === 'user'" class="avatar user-avatar user-avatar-image"></div>
   </div>
-  
+
 
   <div v-if="message.author === 'user'" class="message-wrapper user-message">
     <div class="bubble">
@@ -241,8 +246,8 @@ h4 { font-size: 14px; }
   color: white;
   border: none;
 }
-.recipe-card .ingredients { 
-  white-space: pre-line; 
+.recipe-card .ingredients {
+  white-space: pre-line;
   margin: 0;
 }
 .recipe-step p { /* recipe-step 클래스 내부의 p 태그에 적용 */
@@ -268,5 +273,26 @@ h4 { font-size: 14px; }
 }
 .no-margin-text {
   margin: 0
+}
+
+/* 로딩 스피너 스타일 */
+.loading-message {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* 텍스트와 스피너 사이 간격 */
+}
+
+.loading-spinner {
+  border: 4px solid #f3f3f3; /* Light grey */
+  border-top: 4px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite; /* 스피너 애니메이션 */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 </style>
