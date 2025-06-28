@@ -17,6 +17,7 @@
   "dependencies": {
     "@vue/compiler-sfc": "^3.4.27",
     "pinia": "^3.0.3",
+    "uuid": "^11.1.0",
     "vue": "^3.4.27"
   },
   "devDependencies": {
