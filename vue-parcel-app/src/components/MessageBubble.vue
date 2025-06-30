@@ -70,9 +70,9 @@ function handleButtonClick(optionText) {
           <p>준비물 : <span v-html="menu.ingredients"></span></p>
         </div>
         <div class="divider"></div>
-        <p v-html="message.content.text1" class="no-margin-text"></p>
+        <p v-html="message.content.text" class="no-margin-text"></p>
         <div class="divider"></div>
-        <p v-html="message.content.text2" class="no-margin-text"></p>
+        <p>💭 마음에 드는 메뉴가 없으신가요?</p>
         <div class="card-actions">
            <button
              v-for="action in message.content.actions" :key="action"
@@ -127,7 +127,11 @@ function handleButtonClick(optionText) {
       </div>
 
       <div v-if="message.type === 'can_not_find'" class="nutrition-card">
-        <div v-html="message.content.text"></div>
+        <!-- <div v-html="message.content.text"></div> -->
+        <div>
+          <p>죄송합니다!</p>
+          <p>요청하신 정보를 찾을 수 없어요.</p>
+        </div>
         <div class="divider"></div>
         <div class="card-actions">
            <button
