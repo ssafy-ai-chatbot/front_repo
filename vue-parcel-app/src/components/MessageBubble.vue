@@ -16,8 +16,6 @@ function handleButtonClick(optionText) {
 </script>
 
 <template>
-  <!-- vercel에 수정 자동으로 반영하는지 테스트-->
-  <p>a</p> 
   <div v-if="message.author === 'bot'" class="message-wrapper bot-message">
     <div v-if="message.author === 'bot'" class="avatar bot-avatar bot-avatar-image"></div>
     <div class="bubble">
