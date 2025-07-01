@@ -52,7 +52,8 @@ export const useChatStore = defineStore('chat', () => {
   async function sendMessageToBackend(text) {
     try {
       // FastAPI 백엔드의 /ask 엔드포인트로 POST 요청 전송
-      const apiUrl = process.env.VUE_APP_API_URL || 'http://127.0.0.1:8000/ask';
+      const baseUrl = process.env.VUE_APP_API_URL || 'http://127.0.0.1:8000';
+      const apiUrl = `${baseUrl.replace(/\/$/, '')}/ask`;
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
