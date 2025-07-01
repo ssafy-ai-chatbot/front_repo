@@ -4,7 +4,7 @@
 
 <template>
   <header class="app-header">
-    <div class="status-bar-div"></div>
+    <!-- <div class="status-bar-div"></div> -->
     <div class="title-bar">
       <h1>나만의 AI 요리 비서</h1>
     </div>
