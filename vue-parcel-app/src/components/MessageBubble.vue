@@ -47,16 +47,20 @@ function handleButtonClick(optionText) {
         <div class="divider"></div>
         <h4>👨‍🍳 조리과정</h4>
         <div v-for="(step, i) in message.content.steps" :key="i" class="recipe-step">
-          <p v-html="step.text"></p>
+          <p>{{ i + 1 }}. {{ step.text }}</p>
           <img v-if="step.image" :src="step.image" :alt="'step ' + (i+1)">
         </div>
         <div class="card-actions">
-           <button
-             v-for="action in message.content.actions" :key="action"
-             class="option-button"
-             @click="handleButtonClick(action)">
-             {{ action }}
-           </button>
+          <button 
+          class="option-button" 
+          @click="handleButtonClick('선택한 메뉴 영양 정보 보기')">
+          선택한 메뉴 영양 정보 보기
+          </button>
+          <button 
+          class="option-button" 
+          @click="handleButtonClick('처음으로')">
+          처음으로
+          </button>
         </div>
       </div>
 
@@ -66,11 +70,32 @@ function handleButtonClick(optionText) {
         <h4>📋 {{ message.content.title }}</h4>
         <div class="divider"></div>
         <div v-for="(menu, i) in message.content.recommendation" :key="i" class="recipe-step">
-          <p v-html="menu.menu"></p>
+          <p>{{ i + 1 }}. {{ menu.menu }}</p>
           <p>준비물 : <span v-html="menu.ingredients"></span></p>
         </div>
         <div class="divider"></div>
-        <p v-html="message.content.text" class="no-margin-text"></p>
+          <template v-if="message.content.recommendation.length > 0">
+            🍽️ 마음에 드는 메뉴의 레시피를 찾아보세요<br/>
+            📝 입력 예시:<br/>
+
+            <template v-for="(exampleType, i) in [
+              { section: 'recipe', suffix: ' 레시피 알려줘' },
+              { section: 'recipe', suffix: ' 만드는 법' },
+              { section: 'recipe', suffix: '' }, 
+              { section: 'nutrition', suffix: '의 칼로리를 알려줘' },
+              { section: 'nutrition', suffix: ' 영양 정보를 알려줘' }
+            ]" :key="'dynamic-example-' + i">
+              <template v-if="i === 3">
+                <br/> 📊 궁금한 메뉴의 영양 정보를 살펴보세요<br/>
+                📝 입력 예시:<br/>
+              </template>
+
+              "{{ message.content.recommendation[i % message.content.recommendation.length].menu }}{{ exampleType.suffix }}"<br/>
+            </template>
+          </template>
+          <template v-else>
+            죄송합니다. 추천 메뉴가 없어서 예시를 제공할 수 없습니다.
+          </template>
         <div class="divider"></div>
         <p>💭 마음에 드는 메뉴가 없으신가요?</p>
         <div class="card-actions">
@@ -97,10 +122,19 @@ function handleButtonClick(optionText) {
         </ul>
         <div class="card-actions">
           <button
-            v-for="action in message.content.actions" :key="action"
             class="option-button"
-            @click="handleButtonClick(action)">
-            {{ action }}
+            @click="handleButtonClick('해당 요리 레시피 보기')">
+            해당 요리 레시피 보기
+          </button>
+          <button
+            class="option-button"
+            @click="handleButtonClick('다른 요리 영양 정보 찾기')">
+            다른 요리 영양 정보 찾기
+          </button>
+          <button
+            class="option-button"
+            @click="handleButtonClick('처음으로')">
+            처음으로
           </button>
         </div>
       </div>
@@ -117,17 +151,20 @@ function handleButtonClick(optionText) {
             </ul>
           </template>
         <div class="card-actions">
-           <button
-             v-for="action in message.content.actions" :key="action"
+          <button
              class="option-button"
-             @click="handleButtonClick(action)">
-             {{ action }}
+             @click="handleButtonClick('다른 요리 레시피 찾아보기')">
+             다른 요리 레시피 찾아보기
+           </button>
+          <button
+             class="option-button"
+             @click="handleButtonClick('처음으로')">
+             처음으로
            </button>
         </div>
       </div>
 
       <div v-if="message.type === 'can_not_find'" class="nutrition-card">
-        <!-- <div v-html="message.content.text"></div> -->
         <div>
           <p>죄송합니다!</p>
           <p>요청하신 정보를 찾을 수 없어요.</p>
@@ -135,10 +172,9 @@ function handleButtonClick(optionText) {
         <div class="divider"></div>
         <div class="card-actions">
            <button
-             v-for="action in message.content.actions" :key="action"
              class="option-button"
-             @click="handleButtonClick(action)">
-             {{ action }}
+             @click="handleButtonClick('처음으로')">
+             처음으로
            </button>
         </div>
       </div>

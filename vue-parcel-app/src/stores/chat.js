@@ -102,7 +102,7 @@ export const useChatStore = defineStore('chat', () => {
         author: 'bot',
         type: 'text',
         content: {
-          text: `원하는 요리명을 입력해주세요:<br/>📋 입력 예시:<br/>"김치찌개 레시피"<br/>"계란말이 만드는 법"<br/>"파스타"<br/>"된장국 레시피 알려줘"<br/>💡 TIP:<br/>간단한 요리명만 입력해도 돼요`
+          text: `원하는 요리명을 입력해주세요:<br/>📋 입력 예시:<br/>"새우두부계란찜 레시피"<br/>"일본식 계란말이 만드는 법"<br/>"참나물페스토 파스타"<br/>"된장국 레시피 알려줘"<br/>💡 TIP:<br/>간단한 요리명만 입력해도 돼요`
         }
       };
     } else if (inputText === '냉장고 속 재료 활용하기') {
@@ -113,7 +113,7 @@ export const useChatStore = defineStore('chat', () => {
         author: 'bot',
         type: 'ingredients_guide',
         content: {
-          text: '활용하고 싶은 냉장고 속 재료를 입력해주세요.<br/>📝 입력 예시:<br/>"계란, 양파, 당근으로 뭘 만들 수 있을까?"</br>"두부, 김치, 대파"</br>"감자 3개랑 치즈가 있어"</br>💡 TIP:</br>재료명만 나열해도 좋고, 자연스럽게 문장으로 물어봐도 돼요',
+          text: '활용하고 싶은 냉장고 속 재료를 입력해주세요.<br/>📝 입력 예시:<br/>"당근, 양파로 뭘 만들 수 있을까?"</br>"연어, 양파"</br>"감자 3개랑 밀가루가 있어"</br>💡 TIP:</br>재료명만 나열해도 좋고, 자연스럽게 문장으로 물어봐도 돼요',
           // Note: MessageBubble.vue의 'ingredients_guide' 타입에서는 옵션이 필요 없을 수 있습니다.
         }
       };
@@ -125,7 +125,7 @@ export const useChatStore = defineStore('chat', () => {
         author: 'bot',
         type: 'nutrition_guide',
         content: {
-          text: '🔍 영양 정보 검색하기</br>영양 정보를 검색하고 싶은 음식명을 입력해주세요:<br/>📝 입력 예시:<br/>"김치찌개 영양 정보"</br>"계란말이 칼로리 알려줘"</br>"된장국 나트륨"</br>💡 TIP:</br>"음식명 영양정보"만 입력하거나 "칼로리", "단백질" 등 특정 영양소를 함께 물어봐도 돼요',
+          text: '🔍 영양 정보 검색하기</br>영양 정보를 검색하고 싶은 음식명을 입력해주세요:<br/>📝 입력 예시:<br/>"돼지고기 김치찌개 영양 정보"</br>"햄버거스테이크 칼로리 알려줘"</br>"된장국 나트륨"</br>💡 TIP:</br>"음식명 영양정보"만 입력하거나 "칼로리", "단백질" 등 특정 영양소를 함께 물어봐도 돼요',
         }
       };
     } else if (inputText === '선택한 메뉴 영양 정보 보기' || inputText === '선택한 요리 영양 정보 보기') {
