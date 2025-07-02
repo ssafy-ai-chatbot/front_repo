@@ -221,6 +221,7 @@ function handleButtonClick(optionText) {
   line-height: 1.5;
 
   box-sizing: border-box; /* padding도 포함 */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Bot-specific styles */
@@ -228,8 +229,8 @@ function handleButtonClick(optionText) {
   align-self: flex-start;
 }
 .bot-message .bubble {
-  background: #F0F0F0;
-  color: #767676;
+  background: var(--bot-bubble-bg);
+  color: var(--bot-bubble-text);
   border-top-left-radius: 0;
   width: 220px;
 }
@@ -243,8 +244,8 @@ function handleButtonClick(optionText) {
   max-width: 90%;
 }
 .user-message .bubble {
-  background: #4ED7F1;
-  color: white;
+  background: var(--user-bubble-bg);
+  color: var(--user-bubble-text);
   border-top-right-radius: 0;
   max-width: 220px;
 }
@@ -256,10 +257,10 @@ function handleButtonClick(optionText) {
   gap: 10px;
 }
 .divider {
-  border-top: 1px solid #E0E0E0;
+  border-top: 1px solid var(--card-divider-color);
   margin: 0px 0;
 }
-h3, h4 { margin: 0; color: #555; }
+h3, h4 { margin: 0; color: var(--card-text-color); }
 h3 { font-size: 15px; }
 h4 { font-size: 14px; }
 
@@ -267,24 +268,19 @@ h4 { font-size: 14px; }
   width: 100%;
   padding: 10px;
   border-radius: 10px;
-  border: 1px solid #E0E0E0;
-  background: white; /* 기본 배경색은 흰색 */
-  color: #767676;
+  border: 1px solid var(--option-button-border);
+  background: var(--option-button-bg);
+  color: var(--option-button-text);
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   text-align: center;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* 호버 시 부드러운 전환 효과 */
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 .option-button:hover {
-  background: #4ED7F1; /* 호버 시 연한 하늘색 (원하는 하늘색으로 변경 가능) */
-  color: white; /* 호버 시 글자색은 흰색으로 변경 (대비율을 높이기 위함) */
-  border-color: #4ED7F1; /* 호버 시 테두리 색상도 하늘색으로 변경 */
-}
-.option-button.primary {
-  background: #4ED7F1;
-  color: white;
-  border: none;
+  background: var(--option-button-hover-bg);
+  color: var(--option-button-hover-text);
+  border-color: var(--option-button-hover-bg);
 }
 .recipe-card .ingredients {
   white-space: pre-line;
@@ -295,7 +291,6 @@ h4 { font-size: 14px; }
   /* 필요에 따라 line-height를 조절하여 줄 간격 조절. */
   /* line-height: 1.4; */
 }
-.recipe-step img { width: 100%; height: auto; border-radius: 10px; margin-top: 5px; }
 .nutrition-card ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 5px; }
 .card-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
 

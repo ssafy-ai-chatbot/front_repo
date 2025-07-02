@@ -82,7 +82,7 @@ function startVoiceRecognition() {
       />
 
       <button type="submit" class="send-button">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="send-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="12" y1="19" x2="12" y2="5"></line>
           <polyline points="5 12 12 5 19 12"></polyline>
         </svg>
@@ -94,8 +94,9 @@ function startVoiceRecognition() {
 <style scoped>
 .message-input-wrapper {
   padding: 20px 15px 40px;
-  background: white;
-  border-top: 1px solid #E0E0E0;
+  background: var(--input-wrapper-bg);
+  border-top: 1px solid var(--input-wrapper-border);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .input-container {
@@ -107,15 +108,16 @@ function startVoiceRecognition() {
 .text-input {
   flex-grow: 1;
   border: none;
-  background: #F0F0F0;
+  background: var(--text-input-bg);
   border-radius: 18px;
   outline: none;
   padding: 12px 15px;
   font-size: 15px;
   font-family: 'SF Pro Text', 'Nunito', sans-serif;
   font-weight: 500;
-  color: #333;
+  color: var(--text-input-color);
   line-height: 1.4;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .send-button {
@@ -126,11 +128,15 @@ function startVoiceRecognition() {
   height: 40px;
   border-radius: 50%;
   border: none;
-  background: #4ED7F1;
-  color: white;
+  background: var(--send-button-bg);
   cursor: pointer;
   flex-shrink: 0;
-  transition: background 0.2s;
+  transition: background-color 0.3s ease;
+}
+
+.send-icon {
+  stroke: var(--send-button-icon-color);
+  transition: stroke 0.3s ease;
 }
 
 .voice-button {
