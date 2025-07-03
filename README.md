@@ -16,10 +16,22 @@
 
 ## 🛠 기술 스택
 
+### Frontend Core
 - **Vue.js 3.4.27**: 반응형 컴포넌트 기반 프레임워크
 - **Parcel.js 2.15.4**: 빠른 번들링 및 개발 서버
 - **Pinia 3.0.3**: Vue 3 전용 상태 관리 라이브러리
 - **Web Speech API**: 브라우저 내장 음성 인식 기능
+
+### 배포 & 인프라
+- **컨테이너화**: Docker (멀티스테이지 빌드)
+- **웹서버**: Nginx (정적 파일 서빙 + 리버스 프록시)
+- **클라우드**: Vercel (개발), AWS EC2 (프로덕션)
+- **보안**: 보안 헤더, CORS 설정
+
+### 성능 최적화
+- **빌드 최적화**: Parcel 번들링, Gzip 압축
+- **캐싱**: 정적 자원 브라우저 캐싱 (1년)
+- **이미지 최적화**: Alpine 기반 경량 컨테이너
 
 ## ✨ 주요 기능
 
@@ -98,8 +110,9 @@ front_repo/
 - **Node.js**: 14.0 이상 (권장: 18.0+)
 - **npm**: Node.js와 함께 설치됨
 - **Modern Browser**: Chrome, Firefox, Safari (Web Speech API 지원)
+- **Docker**: 컨테이너 배포 시 필요
 
-### 개발 환경 설정
+### 1. 개발 환경 설정
 
 ```bash
 # 1. 프로젝트 클론
@@ -123,7 +136,48 @@ npm run build
 # → dist/ 폴더에 빌드 결과물 생성
 ```
 
-### 음성 인식 기능 사용
+### 2. Docker 배포
+
+#### 개발용 Docker 실행
+```bash
+cd vue-parcel-app
+
+# Docker 이미지 빌드
+docker build -t recipe-chatbot-frontend .
+
+# 컨테이너 실행
+docker run -p 80:80 \
+  -e VUE_APP_API_URL=http://localhost:8000/ask \
+  recipe-chatbot-frontend
+```
+
+#### 프로덕션 Docker 실행 (Nginx)
+```bash
+cd vue-parcel-app
+
+# 프로덕션 이미지 빌드 (API URL 설정)
+docker build -t recipe-chatbot-frontend-prod \
+  --build-arg VUE_APP_API_URL=/api .
+
+# Nginx 컨테이너 실행
+docker run -p 80:80 -p 443:443 \
+  --name frontend-nginx \
+  recipe-chatbot-frontend-prod
+```
+
+### 3. AWS 배포 (Docker Compose와 함께)
+
+AWS 환경에서는 백엔드와 함께 docker-compose로 배포됩니다:
+
+```bash
+# 루트 디렉토리에서 (back_repo와 front_repo가 모두 있는 위치)
+docker-compose up -d
+
+# 프론트엔드만 재배포
+docker-compose up -d --build frontend
+```
+
+### 4. 음성 인식 기능 사용
 - **브라우저 권한**: 마이크 접근 권한 허용 필요
 - **HTTPS 환경**: 프로덕션에서는 HTTPS 프로토콜 필요
 - **지원 언어**: 한국어 (ko-KR) 설정됨
@@ -166,8 +220,23 @@ POST /ask
 5. **결과**: 타입별 카드 UI로 결과 표시
 6. **액션**: 관련 기능 버튼으로 추가 인터랙션
 
+## 🔧 Nginx 설정 상세
+
+### 리버스 프록시 설정
+- **API 경로**: `/api/*` → `http://backend:8000/*`
+- **CORS 처리**: 모든 Origin 허용 (프로덕션에서는 제한 권장)
+- **정적 파일**: Gzip 압축, 1년 캐시 설정
+
+### 보안 헤더
+- **X-Frame-Options**: Clickjacking 방지
+- **X-Content-Type-Options**: MIME 타입 스니핑 방지
+- **X-XSS-Protection**: XSS 공격 방지
+- **Content-Security-Policy**: 콘텐츠 보안 정책
+
 ## 🔮 향후 개선 계획
 
 - **PWA 지원**: 모바일 앱과 같은 경험 제공
 - **다크모드**: 사용자 선호도에 따른 테마 전환
 - **접근성 개선**: 스크린 리더 및 키보드 네비게이션 지원
+- **오프라인 지원**: Service Worker를 통한 오프라인 기능
+- **성능 최적화**: 코드 스플리팅 및 지연 로딩
