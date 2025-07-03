@@ -93,7 +93,7 @@ function startVoiceRecognition() {
 
 <style scoped>
 .message-input-wrapper {
-  padding: 20px 15px 40px;
+  padding: 20px 15px;
   background: var(--input-wrapper-bg);
   border-top: 1px solid var(--input-wrapper-border);
   transition: background-color 0.3s ease, border-color 0.3s ease;
