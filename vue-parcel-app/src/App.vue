@@ -16,6 +16,12 @@ const toggleDarkMode = () => {
 //   isDarkMode.value = event.matches;
 // };
 
+// 앱의 실제 높이를 설정하는 함수
+const setAppHeight = () => {
+  // CSS 변수에 실제 뷰포트 높이 저장
+  document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`);
+};
+
 onMounted(() => {
   // 사용자의 시스템이 다크 모드인지 확인
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -28,6 +34,15 @@ onMounted(() => {
     // 컴포넌트가 사라질 때 불필요한 메모리 사용을 막기 위해 추가했던 이벤트 리스너 제거
     // mediaQuery.removeEventListener('change', updateTheme);
   // });
+
+  // 컴포넌트가 마운트될 때와 화면 크기가 변경될 때 높이를 다시 계산
+  window.addEventListener('resize', setAppHeight);
+  setAppHeight(); 
+});
+
+onUnmounted(() => {
+  // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
+  window.removeEventListener('resize', setAppHeight);
 });
 </script>
 
@@ -144,10 +159,11 @@ body {
 #app-container {
   width: 393px;
   height: 100vh; /* 화면 높이에 맞춤 */
+  height: var(--app-height); /* JS에서 계산된 동적 높이 사용 */
   position: relative;
   background-color: var(--app-bg);
   /* background-color 속성이 변경될 때 전환 효과 */
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease, height 0.1s ease; 
   display: flex;
   flex-direction: column;
   overflow: hidden;
