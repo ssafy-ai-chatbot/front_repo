@@ -8,7 +8,7 @@
 <template>
   <header class="app-header">
     <div class="title-bar">
-      <h1>나만의 AI 요리 비서</h1>
+      <h1>레시피 톡톡</h1>
     </div>
     <!-- 다크모드 토글 버튼 -->
     <div class="toggle-container">
