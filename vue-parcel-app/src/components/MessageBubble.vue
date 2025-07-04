@@ -211,7 +211,6 @@ function handleButtonClick(optionText) {
     height: 50px;
     border-radius: 50%;
   }
-  /* margin-top: 4px; /* 위치 미세조정  */
 .bubble {
   padding: 12px;
   border-radius: 20px;
@@ -224,7 +223,6 @@ function handleButtonClick(optionText) {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Bot-specific styles */
 .bot-message {
   align-self: flex-start;
 }
@@ -235,7 +233,6 @@ function handleButtonClick(optionText) {
   width: 220px;
 }
 
-/* User-specific styles */
 .user-message {
   align-self: flex-end;
   display: flex;
@@ -250,7 +247,6 @@ function handleButtonClick(optionText) {
   max-width: 220px;
 }
 
-/* Content-specific styles */
 .message-content, .recipe-card, .nutrition-card {
   display: flex;
   flex-direction: column;
@@ -287,9 +283,7 @@ h4 { font-size: 14px; }
   margin: 0;
 }
 .recipe-step p { /* recipe-step 클래스 내부의 p 태그에 적용 */
-  margin: 5; /* 위/아래 마진을 0으로 설정 */
-  /* 필요에 따라 line-height를 조절하여 줄 간격 조절. */
-  /* line-height: 1.4; */
+  margin: 5;
 }
 .nutrition-card ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 5px; }
 .card-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
@@ -297,12 +291,12 @@ h4 { font-size: 14px; }
 
 /* 새로 추가된 CSS 이미지 로딩 규칙 */
 .bot-avatar-image {
-  background-image: url('../assets/chatbot.png'); /* src/components에서 src/img로 상대 경로 */
+  background-image: url('../assets/chatbot.png'); /* src/components에서 상대 경로 */
   background-size: cover; /* 이미지가 div에 꽉 차도록 */
   background-position: center; /* 이미지를 중앙에 배치 */
 }
 .user-avatar-image {
-  background-image: url('../assets/user.png'); /* src/components에서 src/img로 상대 경로 */
+  background-image: url('../assets/user.png'); /* src/components에서 상대 경로 */
   background-size: cover;
   background-position: center;
 }
@@ -318,8 +312,8 @@ h4 { font-size: 14px; }
 }
 
 .loading-spinner {
-  border: 4px solid #f3f3f3; /* Light grey */
-  border-top: 4px solid #3498db; /* Blue */
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db; 
   border-radius: 50%;
   width: 20px;
   height: 20px;

@@ -53,7 +53,7 @@ watch(messages, () => {
     background-color: var(--scrollbar-thumb-color); /* 변수 사용 */
     border-radius: 10px; 
     border: 2px solid transparent; /* 스크롤바 썸 주위에 투명한 테두리 추가 (크기 유지) */
-    background-clip: padding-box; /* border-box 모델에서 padding-box 기준으로 배경을 그림 */
+    background-clip: padding-box; 
   }
 
   /* 스크롤바 호버 시 */
