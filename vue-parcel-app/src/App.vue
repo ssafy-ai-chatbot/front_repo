@@ -11,11 +11,6 @@ const toggleDarkMode = () => {
   isDarkMode.value = !isDarkMode.value;
 };
 
-// updateTheme 함수는 다크 모드 상태가 변경될 때마다 실행됨.
-// const updateTheme = (event) => {
-//   isDarkMode.value = event.matches;
-// };
-
 // 앱의 실제 높이를 설정하는 함수
 const setAppHeight = () => {
   // CSS 변수에 실제 뷰포트 높이 저장
@@ -26,14 +21,6 @@ onMounted(() => {
   // 사용자의 시스템이 다크 모드인지 확인
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
   isDarkMode.value = mediaQuery.matches;
-  // 시스템 설정이 바뀌면 자동으로 적용
-  // 여기서는 처음에 로드할 때 시스템 설정을 확인하고, 토글 버튼으로 다크모드를 설정/해제할 것이므로 주석 처리
-  // mediaQuery.addEventListener('change', updateTheme);
-
-  // onUnmounted(() => {
-    // 컴포넌트가 사라질 때 불필요한 메모리 사용을 막기 위해 추가했던 이벤트 리스너 제거
-    // mediaQuery.removeEventListener('change', updateTheme);
-  // });
 
   // 컴포넌트가 마운트될 때와 화면 크기가 변경될 때 높이를 다시 계산
   window.addEventListener('resize', setAppHeight);
@@ -135,8 +122,8 @@ onUnmounted(() => {
   --toggle-bg-off: #424242;
   --toggle-bg-on: #007A8D;
   --toggle-thumb-color: #EAEAEA;
-  --toggle-track-bg: #2C2C2C;      /* 트랙 배경 (다크) */
-  --toggle-handle-bg: #007A8D;     /* 핸들 배경 (다크 테마의 파란색) */
+  --toggle-track-bg: #2C2C2C;      
+  --toggle-handle-bg: #007A8D;    
   --toggle-icon-url: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='white' stroke='white' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z'%3e%3c/path%3e%3c/svg%3e");
 }
 
@@ -145,7 +132,6 @@ body {
   margin: 0;
   font-family: 'Nunito', 'SF Pro Text', sans-serif;
   background-color: var(--app-bg);
-  /* background-color: black; */
   transition: background-color 0.3s ease;
 }
 
@@ -158,11 +144,9 @@ body {
 <style scoped>
 #app-container {
   width: 393px;
-  height: 100vh; /* 화면 높이에 맞춤 */
   height: var(--app-height); /* JS에서 계산된 동적 높이 사용 */
   position: relative;
   background-color: var(--app-bg);
-  /* background-color 속성이 변경될 때 전환 효과 */
   transition: background-color 0.3s ease, height 0.1s ease; 
   display: flex;
   flex-direction: column;

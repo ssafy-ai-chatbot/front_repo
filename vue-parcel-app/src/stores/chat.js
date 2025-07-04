@@ -1,7 +1,7 @@
 // chat.js
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import { v4 as uuidv4 } from 'uuid'; // <-- 로딩 처리 및 고유 ID 생성을 위해 uuid 임포트
+import { v4 as uuidv4 } from 'uuid'; // 로딩 처리 및 고유 ID 생성을 위해 uuid 임포트
 
 export const useChatStore = defineStore('chat', () => {
   // 메시지 목록 상태. 초기 메시지는 봇의 환영 메시지와 옵션입니다.
@@ -24,7 +24,7 @@ export const useChatStore = defineStore('chat', () => {
   const recommendationsPerPage = 5; // 한 번에 보여줄 추천 요리 개수
 
   // 로딩 상태 (UI에서 활용할 수 있도록 추가)
-  const isLoading = ref(false); // <-- 추가: 로딩 상태 관리
+  const isLoading = ref(false); 
 
   // 메시지를 메시지 목록에 추가하는 함수
   function addMessage(message) {
@@ -114,7 +114,6 @@ export const useChatStore = defineStore('chat', () => {
         type: 'ingredients_guide',
         content: {
           text: '활용하고 싶은 냉장고 속 재료를 입력해주세요.<br/>📝 입력 예시:<br/>"당근, 양파로 뭘 만들 수 있을까?"</br>"연어, 양파"</br>"감자 3개랑 밀가루가 있어"</br>💡 TIP:</br>재료명만 나열해도 좋고, 자연스럽게 문장으로 물어봐도 돼요',
-          // Note: MessageBubble.vue의 'ingredients_guide' 타입에서는 옵션이 필요 없을 수 있습니다.
         }
       };
     } else if (inputText === '영양성분 찾아보기' || inputText === '다른 요리 영양 정보 찾기' || inputText === '다른 음식 영양 정보 찾기') {
@@ -233,7 +232,7 @@ export const useChatStore = defineStore('chat', () => {
     addMessage({ author: 'user', type: 'text', content: { text } }); // 사용자 메시지 추가
 
     // 로딩 메시지 추가
-    isLoading.value = true; // <-- 로딩 시작
+    isLoading.value = true; 
     const loadingMessageId = uuidv4(); // 고유 ID 생성
     addMessage({
       id: loadingMessageId, // 메시지에 ID 부여
@@ -271,7 +270,7 @@ export const useChatStore = defineStore('chat', () => {
         addMessage(errorBotResponse);
       }
     } finally {
-      isLoading.value = false; // <-- 로딩 완료 (성공/실패 무관)
+      isLoading.value = false; // 로딩 완료 (성공/실패 무관)
     }
   }
 
@@ -280,7 +279,7 @@ export const useChatStore = defineStore('chat', () => {
     addMessage({ author: 'user', type: 'text', content: { text: optionText } }); // 클릭된 옵션을 사용자 메시지로 추가
 
     // 로딩 메시지 추가
-    isLoading.value = true; // <-- 로딩 시작
+    isLoading.value = true; // 로딩 시작
     const loadingMessageId = uuidv4(); // 고유 ID 생성
     addMessage({
       id: loadingMessageId, // 메시지에 ID 부여
@@ -318,7 +317,7 @@ export const useChatStore = defineStore('chat', () => {
         addMessage(errorBotResponse);
       }
     } finally {
-      isLoading.value = false; // <-- 로딩 완료 (성공/실패 무관)
+      isLoading.value = false; // 로딩 완료 (성공/실패 무관)
     }
   }
 
